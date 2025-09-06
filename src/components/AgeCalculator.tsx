@@ -21,7 +21,10 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
 
   const handleCalculate = async () => {
     if (!birthDate) {
-      alert(t('pleaseEnterBirthDate'))
+      // Use a more accessible alert method
+      const errorMessage = t('pleaseEnterBirthDate')
+      // For better accessibility, we could use a toast notification instead of alert
+      alert(errorMessage)
       return
     }
 
@@ -106,10 +109,17 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
 
       {/* Input Card */}
       <div className="card-gradient rounded-3xl p-8 shadow-strong animate-slide-up">
-        <div className="space-y-6">
+        <form 
+          onSubmit={(e) => {
+            e.preventDefault()
+            handleCalculate()
+          }}
+          className="space-y-6"
+          aria-label={locale === 'bn' ? 'বয়স গণনার ফর্ম' : 'Age calculation form'}
+        >
           {/* Card Header */}
           <div className="flex items-center space-x-4 pb-6 border-b border-gray-200">
-            <div className="bg-primary-100 p-3 rounded-xl">
+            <div className="bg-primary-100 p-3 rounded-xl" aria-hidden="true">
               <Calendar className="h-6 w-6 text-primary-600" />
             </div>
             <div>
@@ -133,24 +143,38 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
 
             {/* Calculate Button */}
             <button
-              onClick={handleCalculate}
+              type="submit"
               disabled={!birthDate || isCalculating}
-              className="w-full btn-primary flex items-center justify-center space-x-3 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full btn-primary flex items-center justify-center space-x-3 disabled:opacity-50 disabled:cursor-not-allowed focus:ring-4 focus:ring-primary-200 focus:outline-none"
+              aria-describedby={!birthDate ? 'date-required-message' : undefined}
             >
               {isCalculating ? (
                 <>
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                  <div 
+                    className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"
+                    aria-hidden="true"
+                  ></div>
                   <span>{locale === 'bn' ? 'গণনা হচ্ছে...' : 'Calculating...'}</span>
                 </>
               ) : (
                 <>
-                  <Calculator className="h-5 w-5" />
+                  <Calculator className="h-5 w-5" aria-hidden="true" />
                   <span>{t('calculateAge')}</span>
                 </>
               )}
             </button>
+            
+            {!birthDate && (
+              <p 
+                id="date-required-message"
+                className="text-sm text-gray-500 text-center"
+                role="alert"
+              >
+                {locale === 'bn' ? 'বয়স গণনা করতে জন্ম তারিখ প্রয়োজন' : 'Birth date is required to calculate age'}
+              </p>
+            )}
           </div>
-        </div>
+        </form>
       </div>
 
       {/* Results */}
@@ -163,9 +187,12 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
       )}
 
       {/* Features Section */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
-        <div className="card-gradient rounded-2xl p-6 text-center space-y-4 animate-fade-in">
-          <div className="bg-islamic-100 p-4 rounded-xl w-fit mx-auto">
+      <section 
+        className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16"
+        aria-label={locale === 'bn' ? 'বয়স ক্যালকুলেটরের বৈশিষ্ট্য' : 'Age calculator features'}
+      >
+        <article className="card-gradient rounded-2xl p-6 text-center space-y-4 animate-fade-in">
+          <div className="bg-islamic-100 p-4 rounded-xl w-fit mx-auto" aria-hidden="true">
             <CalendarIcon className="h-8 w-8 text-islamic-600" />
           </div>
           <h3 className="text-lg font-semibold text-gray-900">
@@ -177,10 +204,10 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
               : 'View Birthday date according to Hijri calendar'
             }
           </p>
-        </div>
+        </article>
 
-        <div className="card-gradient rounded-2xl p-6 text-center space-y-4 animate-fade-in">
-          <div className="bg-bengali-100 p-4 rounded-xl w-fit mx-auto">
+        <article className="card-gradient rounded-2xl p-6 text-center space-y-4 animate-fade-in">
+          <div className="bg-bengali-100 p-4 rounded-xl w-fit mx-auto" aria-hidden="true">
             <CalendarIcon className="h-8 w-8 text-bengali-600" />
           </div>
           <h3 className="text-lg font-semibold text-gray-900">
@@ -192,10 +219,10 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
               : 'View Birthday date according to Bengali calendar'
             }
           </p>
-        </div>
+        </article>
 
-        <div className="card-gradient rounded-2xl p-6 text-center space-y-4 animate-fade-in">
-          <div className="bg-accent-100 p-4 rounded-xl w-fit mx-auto">
+        <article className="card-gradient rounded-2xl p-6 text-center space-y-4 animate-fade-in">
+          <div className="bg-accent-100 p-4 rounded-xl w-fit mx-auto" aria-hidden="true">
             <Star className="h-8 w-8 text-accent-600" />
           </div>
           <h3 className="text-lg font-semibold text-gray-900">
@@ -207,10 +234,10 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
               : 'Discover your zodiac sign and personality'
             }
           </p>
-        </div>
+        </article>
 
-        <div className="card-gradient rounded-2xl p-6 text-center space-y-4 animate-fade-in">
-          <div className="bg-primary-100 p-4 rounded-xl w-fit mx-auto">
+        <article className="card-gradient rounded-2xl p-6 text-center space-y-4 animate-fade-in">
+          <div className="bg-primary-100 p-4 rounded-xl w-fit mx-auto" aria-hidden="true">
             <Heart className="h-8 w-8 text-primary-600" />
           </div>
           <h3 className="text-lg font-semibold text-gray-900">
@@ -222,8 +249,8 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
               : 'See heartbeats, breaths, and more'
             }
           </p>
-        </div>
-      </div>
+        </article>
+      </section>
     </div>
   )
 }

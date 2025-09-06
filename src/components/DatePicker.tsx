@@ -58,32 +58,51 @@ export default function DatePicker({ value, onChange, locale, label }: DatePicke
 
   return (
     <div className="space-y-2">
-      <label className="block text-sm font-medium text-gray-700 mb-2">
+      <label 
+        htmlFor="date-input"
+        className="block text-sm font-medium text-gray-700 mb-2"
+      >
         {label}
       </label>
       
       <div className="relative">
         <div className="relative">
           <input
+            id="date-input"
             type="date"
             value={value ? value.toISOString().split('T')[0] : ''}
             onChange={handleDateChange}
             max={new Date().toISOString().split('T')[0]}
             className="w-full px-3 py-2.5 sm:px-4 sm:py-3 pr-10 sm:pr-12 border border-gray-300 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-gray-900 bg-white text-sm sm:text-base transition-all duration-200 hover:border-gray-400 focus:outline-none"
             placeholder={locale === 'bn' ? 'তারিখ নির্বাচন করুন' : 'Select date'}
+            aria-label={locale === 'bn' ? 'জন্ম তারিখ নির্বাচন করুন' : 'Select birth date'}
+            aria-describedby={value ? 'selected-date-info' : undefined}
+            required
           />
-          <div className="absolute inset-y-0 right-0 flex items-center pr-3 sm:pr-4">
+          <div 
+            className="absolute inset-y-0 right-0 flex items-center pr-3 sm:pr-4"
+            aria-hidden="true"
+          >
             <Calendar className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400 pointer-events-none" />
           </div>
         </div>
         
         {value && (
-          <div className="mt-2 text-xs sm:text-sm text-gray-600 px-1">
+          <div 
+            id="selected-date-info"
+            className="mt-2 text-xs sm:text-sm text-gray-600 px-1"
+            role="status"
+            aria-live="polite"
+          >
             <span className="font-medium">
               {locale === 'bn' ? 'নির্বাচিত তারিখ:' : 'Selected date:'}
             </span>
-            <span className="ml-1 font-mono">{displayValue}</span>
-            <span className="ml-2 text-gray-500">({formatDate(value)})</span>
+            <span className="ml-1 font-mono" aria-label={`${displayValue} in DD/MM/YYYY format`}>
+              {displayValue}
+            </span>
+            <span className="ml-2 text-gray-500" aria-label={`${formatDate(value)} in full date format`}>
+              ({formatDate(value)})
+            </span>
           </div>
         )}
       </div>
