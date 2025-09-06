@@ -32,8 +32,8 @@ export default function Footer({ locale }: FooterProps) {
             <div className="text-white">
               <p className="font-semibold">
                 {locale === 'bn' 
-                  ? 'সৌজন্যে যুব ক্ষমতায়ন কেন্দ্র - YEC ২০২৫'
-                  : 'Powered by Youth Empowerment Center - YEC 2025'
+                  ? 'সৌজন্যে যুব ক্ষমতায়ন কেন্দ্র - YEC'
+                  : 'Powered by Youth Empowerment Center - YEC'
                 }
               </p>
               <p className="text-sm text-white/80">
@@ -68,7 +68,7 @@ export default function Footer({ locale }: FooterProps) {
               href="https://agecalculator.yec.org.bd"
               className="text-white hover:text-white/80 transition-colors"
             >
-              agecalculator.yec.org.bd
+              Age Calculator Bangladesh
             </a>
             
             {/* Android App Promotion */}
