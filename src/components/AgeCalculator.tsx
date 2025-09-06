@@ -173,8 +173,8 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
           </h3>
           <p className="text-gray-600 text-sm">
             {locale === 'bn' 
-              ? 'হিজরি ক্যালেন্ডার অনুযায়ী তারিখ দেখুন'
-              : 'View dates according to Hijri calendar'
+              ? 'হিজরি ক্যালেন্ডার অনুযায়ী জন্ম তারিখ দেখুন'
+              : 'View Birthday date according to Hijri calendar'
             }
           </p>
         </div>
@@ -188,8 +188,8 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
           </h3>
           <p className="text-gray-600 text-sm">
             {locale === 'bn' 
-              ? 'বাংলা ক্যালেন্ডার অনুযায়ী তারিখ দেখুন'
-              : 'View dates according to Bengali calendar'
+              ? 'বাংলা ক্যালেন্ডার অনুযায়ী জন্ম তারিখ দেখুন'
+              : 'View Birthday date according to Bengali calendar'
             }
           </p>
         </div>
