@@ -58,6 +58,13 @@ export default function Footer({ locale }: FooterProps) {
             </a>
             
             <a
+              href={`/${locale}/privacy-policy`}
+              className="text-white hover:text-white/80 transition-colors"
+            >
+              {locale === 'bn' ? 'গোপনীয়তা নীতি' : 'Privacy Policy'}
+            </a>
+            
+            <a
               href="https://agecalculator.yec.org.bd"
               className="text-white hover:text-white/80 transition-colors"
             >
