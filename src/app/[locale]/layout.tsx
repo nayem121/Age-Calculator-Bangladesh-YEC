@@ -1,8 +1,32 @@
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
+import { Metadata } from 'next'
 
 const locales = ['en', 'bn']
+
+export async function generateMetadata({
+  params: { locale }
+}: {
+  params: { locale: string }
+}): Promise<Metadata> {
+  const baseUrl = 'https://agecalculator.yec.org.bd'
+  const currentUrl = `${baseUrl}/${locale}`
+  
+  return {
+    alternates: {
+      canonical: currentUrl,
+      languages: {
+        'en-US': `${baseUrl}/en`,
+        'bn-BD': `${baseUrl}/bn`,
+      },
+    },
+    openGraph: {
+      url: currentUrl,
+      locale: locale === 'bn' ? 'bn_BD' : 'en_US',
+    },
+  }
+}
 
 export default async function LocaleLayout({
   children,

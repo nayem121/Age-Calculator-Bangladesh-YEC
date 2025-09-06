@@ -25,6 +25,12 @@ export default function HomePage({ params: { locale } }: { params: { locale: str
     <div className="min-h-screen gradient-bg">
       <Header locale={locale} />
       <main className="container mx-auto px-4 py-8">
+        <h1 className="sr-only">
+          {locale === 'bn' 
+            ? 'বয়স ক্যালকুলেটর বাংলাদেশ - জন্ম তারিখ দিয়ে বয়স বের করুন' 
+            : 'Age Calculator Bangladesh - Calculate Age from Date of Birth'
+          }
+        </h1>
         <AgeCalculator locale={locale} />
       </main>
       <Footer locale={locale} />

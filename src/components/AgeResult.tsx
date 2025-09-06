@@ -155,9 +155,9 @@ export default function AgeResult({ ageResult, locale, t }: AgeResultProps) {
       <div className="card-gradient rounded-3xl p-8 shadow-strong">
         {activeTab === 'age' && (
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
               {locale === 'bn' ? 'বিস্তারিত সময়' : 'Detailed Time lived'}
-            </h3>
+            </h2>
             
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               <div className="bg-blue-50 p-4 rounded-xl text-center">
@@ -225,9 +225,9 @@ export default function AgeResult({ ageResult, locale, t }: AgeResultProps) {
 
         {activeTab === 'details' && (
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
               {locale === 'bn' ? 'হিজরি ও বাংলা ক্যালেন্ডারে জন্ম তারিখ' : 'Birth date in Hijri and Bangla Calendar'}
-            </h3>
+            </h2>
             
             <div className="grid md:grid-cols-2 gap-6">
               {/* Islamic Calendar */}
@@ -261,9 +261,9 @@ export default function AgeResult({ ageResult, locale, t }: AgeResultProps) {
 
         {activeTab === 'zodiac' && (
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
               {locale === 'bn' ? 'রাশিচক্র তথ্য' : 'Zodiac Information'}
-            </h3>
+            </h2>
             
             <div className="bg-gradient-to-br from-yellow-50 to-orange-100 p-6 rounded-2xl">
               <div className="text-center space-y-4">
@@ -292,9 +292,9 @@ export default function AgeResult({ ageResult, locale, t }: AgeResultProps) {
 
         {activeTab === 'legal' && Object.keys(ageResult.legalInfo).length > 0 && (
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
               {t('legalRights')}
-            </h3>
+            </h2>
             
             <div className="space-y-4">
               {Object.entries(ageResult.legalInfo).map(([key, value]: [string, any], index: number) => (
@@ -320,9 +320,9 @@ export default function AgeResult({ ageResult, locale, t }: AgeResultProps) {
 
         {activeTab === 'health' && ageResult.vaccinationSchedule.length > 0 && (
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
               {t('vaccinations')}
-            </h3>
+            </h2>
             
             <div className="space-y-4">
               {ageResult.vaccinationSchedule.map((vaccine: any, index: number) => (
