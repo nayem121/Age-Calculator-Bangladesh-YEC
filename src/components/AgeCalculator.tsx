@@ -7,7 +7,6 @@ import { calculateAge, formatNumber, formatDate, convertToHijri, convertToBengal
 import { bangladeshData } from '@/data/country-data'
 import AgeResult from './AgeResult'
 import DatePicker from './DatePicker'
-import AndroidAppBanner from './AndroidAppBanner'
 
 interface AgeCalculatorProps {
   locale: string
@@ -73,8 +72,6 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
-      {/* Android App Banner */}
-      <AndroidAppBanner locale={locale} />
       
       {/* Hero Section */}
       <div className="text-center space-y-6 animate-fade-in">
