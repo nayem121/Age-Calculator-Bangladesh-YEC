@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { Smartphone, Download, X, ExternalLink } from 'lucide-react'
 
+// Interface for Android App Banner component props
+// @ts-ignore - Hide interface from documentation
 interface AndroidAppBannerProps {
   locale: string
 }
@@ -30,7 +32,7 @@ export default function AndroidAppBanner({ locale }: AndroidAppBannerProps) {
                 : 'Download Our Android App'
               }
             </h3>
-            <p className="text-sm opacity-90">
+            <p className="text-sm text-white/95">
               {locale === 'bn' 
                 ? 'অফলাইন ব্যবহারের জন্য আমাদের অ্যান্ড্রয়েড অ্যাপটি ডাউনলোড করুন'
                 : 'Download our Android app for offline usage and better experience'
@@ -54,7 +56,7 @@ export default function AndroidAppBanner({ locale }: AndroidAppBannerProps) {
           
           <button
             onClick={() => setIsVisible(false)}
-            className="text-white/80 hover:text-white transition-colors p-1 focus:outline-none focus:ring-2 focus:ring-white/50 rounded"
+            className="text-white/90 hover:text-white transition-colors p-1 focus:outline-none focus:ring-2 focus:ring-white/70 rounded"
             aria-label={locale === 'bn' ? 'ব্যানার বন্ধ করুন' : 'Close banner'}
           >
             <X className="h-5 w-5" aria-hidden="true" />

@@ -82,13 +82,13 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
           <h1 className="text-4xl md:text-5xl font-bold text-white">
             {t('ageCalculator')}
           </h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto">
+          <p className="text-xl text-white max-w-2xl mx-auto">
             {t('calculateAgeDescription')}
           </p>
         </div>
         
         {/* SEO Keywords */}
-        <div className="flex flex-wrap justify-center gap-2 text-sm text-white/70">
+        <div className="flex flex-wrap justify-center gap-2 text-sm text-white/90">
           <span className="bg-white/20 px-3 py-1 rounded-full">
             {locale === 'bn' ? 'বয়স ক্যালকুলেটর' : 'Age Calculator'}
           </span>

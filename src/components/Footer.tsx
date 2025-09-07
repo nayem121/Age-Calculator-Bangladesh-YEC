@@ -36,7 +36,7 @@ export default function Footer({ locale }: FooterProps) {
                   : 'Powered by Youth Empowerment Center - YEC'
                 }
               </p>
-              <p className="text-sm text-white/80">
+              <p className="text-sm text-white/95">
                 {locale === 'bn' 
                   ? 'বাংলাদেশের যুবদের জন্য প্রযুক্তি সমাধান'
                   : 'Technology Solutions for Bangladesh Youth'
@@ -51,7 +51,7 @@ export default function Footer({ locale }: FooterProps) {
               href="https://yec.org.bd"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center space-x-2 text-white hover:text-white/80 transition-colors"
+              className="flex items-center space-x-2 text-white hover:text-white/90 transition-colors"
             >
               <span>YEC Website</span>
               <ExternalLink className="h-4 w-4" />
@@ -59,14 +59,14 @@ export default function Footer({ locale }: FooterProps) {
             
             <a
               href={`/${locale}/privacy-policy`}
-              className="text-white hover:text-white/80 transition-colors"
+              className="text-white hover:text-white/90 transition-colors"
             >
               {locale === 'bn' ? 'গোপনীয়তা নীতি' : 'Privacy Policy'}
             </a>
             
             <a
               href="https://agecalculator.yec.org.bd"
-              className="text-white hover:text-white/80 transition-colors"
+              className="text-white hover:text-white/90 transition-colors"
             >
               Age Calculator Bangladesh
             </a>

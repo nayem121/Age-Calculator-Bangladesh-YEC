@@ -33,7 +33,7 @@ export default function Header({ locale }: HeaderProps) {
               <h1 className="text-2xl font-bold text-white">
                 {t('ageCalculator')}
               </h1>
-              <p className="text-sm text-white/80 hidden sm:block">
+              <p className="text-sm text-white/95 hidden sm:block">
                 {locale === 'bn' 
                   ? 'বাংলাদেশের জন্য বিশেষায়িত বয়স ক্যালকুলেটর'
                   : 'Specialized Age Calculator for Bangladesh People'
@@ -46,7 +46,7 @@ export default function Header({ locale }: HeaderProps) {
           <nav className="hidden md:flex items-center space-x-6" role="navigation" aria-label={locale === 'bn' ? 'প্রধান নেভিগেশন' : 'Main navigation'}>
             <Link 
               href={`/${locale}`}
-              className="text-white hover:text-white/80 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded"
+              className="text-white hover:text-white/90 transition-colors focus:outline-none focus:ring-2 focus:ring-white/70 rounded"
             >
               {t('ageCalculator')}
             </Link>
@@ -85,7 +85,7 @@ export default function Header({ locale }: HeaderProps) {
             <nav className="flex flex-col space-y-4">
               <Link 
                 href={`/${locale}`}
-                className="text-white hover:text-white/80 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded"
+                className="text-white hover:text-white/90 transition-colors focus:outline-none focus:ring-2 focus:ring-white/70 rounded"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('ageCalculator')}
