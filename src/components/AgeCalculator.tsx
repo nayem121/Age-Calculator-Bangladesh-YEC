@@ -189,84 +189,76 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
                 {locale === 'bn' ? 'বয়স গণনা করতে জন্ম তারিখ প্রয়োজন' : 'Birth date is required to calculate age'}
               </p>
             )}
-          </div>
         </form>
       </div>
 
       {/* Results */}
       {ageResult && (
-        <AgeResult 
-          ageResult={ageResult} 
-          locale={locale} 
-          t={t}
-        />
+        <AgeResult ageResult={ageResult} locale={locale} t={t} />
       )}
 
       {/* Features Section */}
-      <section 
-        className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16"
-        aria-label={locale === 'bn' ? 'বয়স ক্যালকুলেটরের বৈশিষ্ট্য' : 'Age calculator features'}
-      >
-        <article className="card-gradient rounded-2xl p-6 text-center space-y-4 animate-fade-in">
-          <div className="bg-islamic-100 p-4 rounded-xl w-fit mx-auto" aria-hidden="true">
-            <CalendarIcon className="h-8 w-8 text-islamic-600" />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <article className="card-gradient rounded-2xl p-6 text-center animate-fade-in">
+          <div className="bg-primary-100 p-3 rounded-xl w-fit mx-auto mb-4" aria-hidden="true">
+            <Calendar className="h-8 w-8 text-primary-600" />
           </div>
-          <h3 className="text-lg font-semibold text-gray-900">
-            {t('islamicCalendar')}
+          <h3 className="text-lg font-bold text-gray-900 mb-2">
+            {locale === 'bn' ? 'সঠিক বয়স গণনা' : 'Accurate Age Calculation'}
           </h3>
           <p className="text-gray-600 text-sm">
             {locale === 'bn' 
-              ? 'হিজরি ক্যালেন্ডার অনুযায়ী জন্ম তারিখ দেখুন'
-              : 'View Birthday date according to Hijri calendar'
+              ? 'বছর, মাস, দিন এবং সেকেন্ডে সঠিক বয়স গণনা করুন' 
+              : 'Calculate exact age in years, months, days, and seconds'
             }
           </p>
         </article>
 
-        <article className="card-gradient rounded-2xl p-6 text-center space-y-4 animate-fade-in">
-          <div className="bg-bengali-100 p-4 rounded-xl w-fit mx-auto" aria-hidden="true">
-            <CalendarIcon className="h-8 w-8 text-bengali-600" />
+        <article className="card-gradient rounded-2xl p-6 text-center animate-fade-in">
+          <div className="bg-secondary-100 p-3 rounded-xl w-fit mx-auto mb-4" aria-hidden="true">
+            <Star className="h-8 w-8 text-secondary-600" />
           </div>
-          <h3 className="text-lg font-semibold text-gray-900">
-            {t('bengaliCalendar')}
+          <h3 className="text-lg font-bold text-gray-900 mb-2">
+            {locale === 'bn' ? 'রাশিচক্র চিহ্ন' : 'Zodiac Signs'}
           </h3>
           <p className="text-gray-600 text-sm">
             {locale === 'bn' 
-              ? 'বাংলা ক্যালেন্ডার অনুযায়ী জন্ম তারিখ দেখুন'
-              : 'View Birthday date according to Bengali calendar'
+              ? 'আপনার রাশিচক্র চিহ্ন এবং তার বৈশিষ্ট্য জানুন' 
+              : 'Discover your zodiac sign and its characteristics'
             }
           </p>
         </article>
 
-        <article className="card-gradient rounded-2xl p-6 text-center space-y-4 animate-fade-in">
-          <div className="bg-accent-100 p-4 rounded-xl w-fit mx-auto" aria-hidden="true">
-            <Star className="h-8 w-8 text-accent-600" />
+        <article className="card-gradient rounded-2xl p-6 text-center animate-fade-in">
+          <div className="bg-bengali-100 p-3 rounded-xl w-fit mx-auto mb-4" aria-hidden="true">
+            <Clock className="h-8 w-8 text-bengali-600" />
           </div>
-          <h3 className="text-lg font-semibold text-gray-900">
-            {locale === 'bn' ? 'রাশিচক্র' : 'Zodiac Signs'}
+          <h3 className="text-lg font-bold text-gray-900 mb-2">
+            {locale === 'bn' ? 'ক্যালেন্ডার রূপান্তর' : 'Calendar Conversion'}
           </h3>
           <p className="text-gray-600 text-sm">
             {locale === 'bn' 
-              ? 'আপনার রাশিচক্র এবং ব্যক্তিত্ব জানুন'
-              : 'Discover your zodiac sign and personality'
+              ? 'ইসলামিক এবং বাংলা ক্যালেন্ডারে তারিখ রূপান্তর করুন' 
+              : 'Convert dates to Islamic and Bengali calendars'
             }
           </p>
         </article>
 
-        <article className="card-gradient rounded-2xl p-6 text-center space-y-4 animate-fade-in">
-          <div className="bg-primary-100 p-4 rounded-xl w-fit mx-auto" aria-hidden="true">
-            <Heart className="h-8 w-8 text-primary-600" />
+        <article className="card-gradient rounded-2xl p-6 text-center animate-fade-in">
+          <div className="bg-accent-100 p-3 rounded-xl w-fit mx-auto mb-4" aria-hidden="true">
+            <Heart className="h-8 w-8 text-accent-600" />
           </div>
-          <h3 className="text-lg font-semibold text-gray-900">
-            {locale === 'bn' ? 'মজার তথ্য' : 'Fun Facts'}
+          <h3 className="text-lg font-bold text-gray-900 mb-2">
+            {locale === 'bn' ? 'স্বাস্থ্য তথ্য' : 'Health Information'}
           </h3>
           <p className="text-gray-600 text-sm">
             {locale === 'bn' 
-              ? 'হৃদস্পন্দন, শ্বাস-প্রশ্বাসের সংখ্যা দেখুন'
-              : 'See heartbeats, breaths, and more'
+              ? 'টিকাদান সময়সূচী এবং আইনি অধিকার সম্পর্কে জানুন' 
+              : 'Learn about vaccination schedules and legal rights'
             }
           </p>
         </article>
-      </section>
+      </div>
     </div>
   )
 }
