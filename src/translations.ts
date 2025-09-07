@@ -2,7 +2,7 @@ export const translations = {
   en: {
     // General
     ageCalculator: "Age Calculator",
-    calculateAgeDescription: "Calculate your exact age with comprehensive details including zodiac signs, life events, and country-specific information",
+    calculateAgeDescription: "Calculate your exact age, along with your Hijri and Bangla date of birth according to the Hijri and Bangla calendars, horoscope, your legal and fundamental rights under the laws of Bangladesh, and health-related information.",
     settings: "Settings",
     language: "Language",
     notifications: "Notifications",
