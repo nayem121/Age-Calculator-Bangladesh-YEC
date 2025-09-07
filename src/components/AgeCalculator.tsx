@@ -15,6 +15,7 @@ interface AgeCalculatorProps {
 export default function AgeCalculator({ locale }: AgeCalculatorProps) {
   const t = useTranslations()
   const [birthDate, setBirthDate] = useState<Date | null>(null)
+  const [targetDate, setTargetDate] = useState<Date | null>(null)
   const [ageResult, setAgeResult] = useState<any>(null)
   const [isCalculating, setIsCalculating] = useState(false)
 
@@ -33,7 +34,7 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
     await new Promise(resolve => setTimeout(resolve, 200))
 
     try {
-      const ageData = calculateAge(birthDate)
+      const ageData = calculateAge(birthDate, targetDate || undefined)
       
       // Get zodiac information
       const zodiacData = getZodiacSign(birthDate, locale)
@@ -60,7 +61,9 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
         lifeProgress,
         hijriDate,
         bengaliDate,
-        nextBirthday: new Date(new Date().getFullYear(), birthDate.getMonth(), birthDate.getDate())
+        nextBirthday: new Date(new Date().getFullYear(), birthDate.getMonth(), birthDate.getDate()),
+        targetDate: targetDate ? formatDate(targetDate, locale) : null,
+        isTargetDateUsed: !!targetDate
       })
     } catch (error) {
       console.error('Calculation error:', error)
@@ -129,13 +132,23 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
             </div>
           </div>
 
-          {/* Date Input */}
+          {/* Date Inputs */}
           <div className="space-y-4">
             <DatePicker
               value={birthDate}
               onChange={setBirthDate}
               locale={locale}
               label={t('birthDate')}
+            />
+            
+            <DatePicker
+              value={targetDate}
+              onChange={setTargetDate}
+              locale={locale}
+              label={locale === 'bn' ? 'বয়স গণনার তারিখ' : 'Age at the Date of'}
+              placeholder={locale === 'bn' ? 'ঐচ্ছিক - বর্তমান তারিখ ব্যবহার করুন' : 'Optional - Use current date'}
+              required={false}
+              maxDate={new Date().toISOString().split('T')[0]}
             />
 
             {/* Calculate Button */}

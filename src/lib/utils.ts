@@ -20,7 +20,7 @@ export function formatDate(date: Date, locale: string = 'en'): string {
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
-export function calculateAge(birthDate: Date): {
+export function calculateAge(birthDate: Date, targetDate?: Date): {
   years: number;
   months: number;
   days: number;
@@ -34,7 +34,7 @@ export function calculateAge(birthDate: Date): {
   heartbeats: number;
   breaths: number;
 } {
-  const today = new Date();
+  const today = targetDate || new Date();
   const birth = new Date(birthDate);
   
   let years = today.getFullYear() - birth.getFullYear();

@@ -8,9 +8,20 @@ interface DatePickerProps {
   onChange: (date: Date | null) => void
   locale: string
   label: string
+  placeholder?: string
+  required?: boolean
+  maxDate?: string
 }
 
-export default function DatePicker({ value, onChange, locale, label }: DatePickerProps) {
+export default function DatePicker({ 
+  value, 
+  onChange, 
+  locale, 
+  label, 
+  placeholder, 
+  required = true, 
+  maxDate 
+}: DatePickerProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [displayValue, setDisplayValue] = useState('')
 
@@ -72,12 +83,12 @@ export default function DatePicker({ value, onChange, locale, label }: DatePicke
             type="date"
             value={value ? value.toISOString().split('T')[0] : ''}
             onChange={handleDateChange}
-            max={new Date().toISOString().split('T')[0]}
+            max={maxDate || new Date().toISOString().split('T')[0]}
             className="w-full px-3 py-2.5 sm:px-4 sm:py-3 pr-10 sm:pr-12 border border-gray-300 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-gray-900 bg-white text-sm sm:text-base transition-all duration-200 hover:border-gray-400 focus:outline-none"
-            placeholder={locale === 'bn' ? 'তারিখ নির্বাচন করুন' : 'Select date'}
-            aria-label={locale === 'bn' ? 'জন্ম তারিখ নির্বাচন করুন' : 'Select birth date'}
+            placeholder={placeholder || (locale === 'bn' ? 'তারিখ নির্বাচন করুন' : 'Select date')}
+            aria-label={label}
             aria-describedby={value ? 'selected-date-info' : undefined}
-            required
+            required={required}
           />
           <div 
             className="absolute inset-y-0 right-0 flex items-center pr-3 sm:pr-4"

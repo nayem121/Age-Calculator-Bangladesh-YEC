@@ -64,6 +64,21 @@ export default function AgeResult({ ageResult, locale, t }: AgeResultProps) {
             {t('ageCalculationResult')}
           </h2>
           
+          {/* Target Date Information */}
+          {ageResult.isTargetDateUsed && ageResult.targetDate && (
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-4">
+              <div className="flex items-center justify-center space-x-2 text-blue-800">
+                <Calendar className="h-5 w-5" />
+                <span className="font-medium">
+                  {locale === 'bn' 
+                    ? `বয়স গণনা করা হয়েছে: ${ageResult.targetDate}` 
+                    : `Age calculated as of: ${ageResult.targetDate}`
+                  }
+                </span>
+              </div>
+            </div>
+          )}
+          
           {/* Age Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="bg-primary-50 p-6 rounded-2xl">
