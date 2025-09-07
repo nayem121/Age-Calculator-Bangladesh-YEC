@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
-import { useTranslations } from 'next-intl'
 
 export default function Error({
   error,
@@ -13,8 +12,6 @@ export default function Error({
   reset: () => void
   params: { locale: string }
 }) {
-  const t = useTranslations('common')
-  
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error)
@@ -36,13 +33,13 @@ export default function Error({
         <div className="space-x-4">
           <button
             onClick={reset}
-            className="btn-primary"
+            className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-lg shadow-lg transition-all duration-200"
           >
             {locale === 'bn' ? 'আবার চেষ্টা করুন' : 'Try again'}
           </button>
           <Link 
             href={`/${locale}`}
-            className="btn-secondary"
+            className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white font-semibold rounded-lg shadow-lg transition-all duration-200"
           >
             {locale === 'bn' ? 'হোমে যান' : 'Go Home'}
           </Link>

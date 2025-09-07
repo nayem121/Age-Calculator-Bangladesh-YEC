@@ -26,13 +26,13 @@ export default function Error({
         <div className="space-x-4">
           <button
             onClick={reset}
-            className="btn-primary"
+            className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-lg shadow-lg transition-all duration-200"
           >
             Try again
           </button>
           <Link 
             href="/en"
-            className="btn-secondary"
+            className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white font-semibold rounded-lg shadow-lg transition-all duration-200"
           >
             Go Home
           </Link>
