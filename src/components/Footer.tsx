@@ -75,12 +75,13 @@ export default function Footer({ locale }: FooterProps) {
               href="https://play.google.com/store/apps/details?id=com.yec.agecalculatorbangladesh"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg transition-colors"
+              className="flex items-center space-x-2 bg-green-700 hover:bg-green-800 focus:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2 focus:ring-offset-transparent px-4 py-2 rounded-lg transition-colors"
+              aria-label={locale === 'bn' ? 'Google Play Store থেকে অ্যান্ড্রয়েড অ্যাপ ডাউনলোড করুন' : 'Download Android app from Google Play Store'}
             >
-              <span className="text-white font-medium">
+              <span className="text-white font-semibold">
                 {locale === 'bn' ? 'অ্যান্ড্রয়েড অ্যাপ ডাউনলোড করুন' : 'Download Android App'}
               </span>
-              <ExternalLink className="h-4 w-4" />
+              <ExternalLink className="h-4 w-4 text-white" aria-hidden="true" />
             </a>
           </div>
         </div>
