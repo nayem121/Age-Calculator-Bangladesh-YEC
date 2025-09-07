@@ -1,7 +1,17 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import AgeCalculator from '@/components/AgeCalculator'
+import dynamic from 'next/dynamic'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+
+// Lazy load AgeCalculator to improve LCP
+const AgeCalculator = dynamic(() => import('@/components/AgeCalculator'), {
+  loading: () => (
+    <div className="flex justify-center items-center py-12">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+    </div>
+  ),
+  ssr: true
+})
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   const t = await getTranslations({ locale, namespace: 'metadata' })

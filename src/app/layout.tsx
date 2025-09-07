@@ -6,17 +6,22 @@ import { getMessages } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import dynamic from 'next/dynamic'
 
 const inter = Inter({ 
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'arial']
 })
 
 const notoSansBengali = Noto_Sans_Bengali({ 
   subsets: ['bengali'],
   variable: '--font-bengali',
   display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'arial']
 })
 
 export const metadata: Metadata = {
@@ -125,6 +130,10 @@ export default async function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#0F4C75" />
         <meta name="msapplication-TileColor" content="#0F4C75" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />
+        <link rel="dns-prefetch" href="https://v.vercel-insights.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { useTranslations } from 'next-intl'
 import { Calendar, Globe, Menu, X } from 'lucide-react'
 import Link from 'next/link'
@@ -15,10 +15,10 @@ export default function Header({ locale }: HeaderProps) {
   const router = useRouter()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const switchLanguage = () => {
+  const switchLanguage = useCallback(() => {
     const newLocale = locale === 'en' ? 'bn' : 'en'
     router.push(`/${newLocale}`)
-  }
+  }, [locale, router])
 
   return (
     <header className="bg-white/10 backdrop-blur-md border-b border-white/20 sticky top-0 z-50" role="banner">

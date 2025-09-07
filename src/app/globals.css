@@ -61,18 +61,20 @@
 @layer components {
   .gradient-bg {
     background: linear-gradient(135deg, #0F4C75 0%, #3282B8 50%, #BBE1FA 100%);
+    will-change: auto;
   }
   
   .card-gradient {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+    will-change: auto;
   }
   
   .btn-primary {
-    @apply bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105;
+    @apply bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-colors duration-150;
   }
   
   .btn-secondary {
-    @apply bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105;
+    @apply bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-colors duration-150;
   }
   
   .text-gradient {
@@ -84,15 +86,38 @@
   }
   
   .animate-fade-in {
-    animation: fadeIn 0.5s ease-in-out;
+    animation: fadeIn 0.3s ease-in-out;
   }
   
   .animate-slide-up {
-    animation: slideUp 0.5s ease-out;
+    animation: slideUp 0.3s ease-out;
   }
   
   .animate-bounce-gentle {
     animation: bounceGentle 2s infinite;
+  }
+  
+  /* Performance optimizations */
+  .will-change-transform {
+    will-change: transform;
+  }
+  
+  .will-change-auto {
+    will-change: auto;
+  }
+  
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in,
+    .animate-slide-up,
+    .animate-bounce-gentle {
+      animation: none;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+      transition: none;
+    }
   }
 }
 

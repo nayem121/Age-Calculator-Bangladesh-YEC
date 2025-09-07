@@ -29,8 +29,8 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
 
     setIsCalculating(true)
     
-    // Simulate calculation delay for better UX
-    await new Promise(resolve => setTimeout(resolve, 500))
+    // Reduced delay for better performance while maintaining UX
+    await new Promise(resolve => setTimeout(resolve, 200))
 
     try {
       const ageData = calculateAge(birthDate)
