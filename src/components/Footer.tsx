@@ -88,10 +88,10 @@ export default function Footer({ locale }: FooterProps) {
 
         {/* Copyright */}
         <div className="mt-6 pt-6 border-t border-white/20 text-center">
-          <p className="text-white/60 text-sm">
+          <p className="text-white/90 text-sm">
             © 2025 Youth Empowerment Center (YEC). All rights reserved.
           </p>
-          <p className="text-white/60 text-xs mt-2">
+          <p className="text-white/85 text-xs mt-2">
             {locale === 'bn' 
               ? 'এই ওয়েবসাইটটি বাংলাদেশের নাগরিকদের জন্য বিনামূল্যে বয়স গণনার সুবিধা প্রদান করে'
               : 'This website provides free age calculation services for Bangladesh citizens'
