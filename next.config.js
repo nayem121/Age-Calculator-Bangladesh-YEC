@@ -2,7 +2,6 @@
 const nextConfig = {
   // Performance optimizations
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ['lucide-react', '@vercel/analytics', '@vercel/speed-insights'],
   },
   
@@ -88,15 +87,7 @@ const nextConfig = {
   // Enable SWC minification
   swcMinify: true,
   
-  // Output configuration
-  output: 'standalone',
-  
-  // Internationalization
-  i18n: {
-    locales: ['en', 'bn'],
-    defaultLocale: 'en',
-    localeDetection: true,
-  },
+  // Internationalization - removed as we're using app router with next-intl
   
   // Redirects for SEO
   async redirects() {
