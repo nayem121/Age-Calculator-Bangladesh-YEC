@@ -79,44 +79,44 @@ export default function AgeResult({ ageResult, locale, t }: AgeResultProps) {
             </div>
           )}
           
-          {/* Age Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-primary-50 p-6 rounded-2xl">
-              <Calendar className="h-8 w-8 text-primary-600 mx-auto mb-2" />
-              <div className="text-3xl font-bold text-primary-900">
+          {/* Age Grid - Responsive with proper spacing for large numbers */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="bg-primary-50 p-4 sm:p-6 rounded-2xl min-w-0">
+              <Calendar className="h-6 w-6 sm:h-8 sm:w-8 text-primary-600 mx-auto mb-2" />
+              <div className="text-2xl sm:text-3xl font-bold text-primary-900 break-words">
                 {formatNumber(ageResult.years, locale)}
               </div>
-              <div className="text-sm text-primary-700 font-medium">
+              <div className="text-xs sm:text-sm text-primary-700 font-medium mt-1">
                 {t('years')}
               </div>
             </div>
             
-            <div className="bg-secondary-50 p-6 rounded-2xl">
-              <Calendar className="h-8 w-8 text-secondary-600 mx-auto mb-2" />
-              <div className="text-3xl font-bold text-secondary-900">
+            <div className="bg-secondary-50 p-4 sm:p-6 rounded-2xl min-w-0">
+              <Calendar className="h-6 w-6 sm:h-8 sm:w-8 text-secondary-600 mx-auto mb-2" />
+              <div className="text-2xl sm:text-3xl font-bold text-secondary-900 break-words">
                 {formatNumber(ageResult.months, locale)}
               </div>
-              <div className="text-sm text-secondary-700 font-medium">
+              <div className="text-xs sm:text-sm text-secondary-700 font-medium mt-1">
                 {t('months')}
               </div>
             </div>
             
-            <div className="bg-bengali-50 p-6 rounded-2xl">
-              <Calendar className="h-8 w-8 text-bengali-600 mx-auto mb-2" />
-              <div className="text-3xl font-bold text-bengali-900">
+            <div className="bg-bengali-50 p-4 sm:p-6 rounded-2xl min-w-0">
+              <Calendar className="h-6 w-6 sm:h-8 sm:w-8 text-bengali-600 mx-auto mb-2" />
+              <div className="text-2xl sm:text-3xl font-bold text-bengali-900 break-words">
                 {formatNumber(ageResult.days, locale)}
               </div>
-              <div className="text-sm text-bengali-700 font-medium">
+              <div className="text-xs sm:text-sm text-bengali-700 font-medium mt-1">
                 {t('days')}
               </div>
             </div>
             
-            <div className="bg-accent-50 p-6 rounded-2xl">
-              <Calendar className="h-8 w-8 text-accent-600 mx-auto mb-2" />
-              <div className="text-3xl font-bold text-accent-900">
+            <div className="bg-accent-50 p-4 sm:p-6 rounded-2xl min-w-0">
+              <Calendar className="h-6 w-6 sm:h-8 sm:w-8 text-accent-600 mx-auto mb-2" />
+              <div className="text-2xl sm:text-3xl font-bold text-accent-900 break-words">
                 {formatNumber(ageResult.daysUntilBirthday, locale)}
               </div>
-              <div className="text-sm text-accent-700 font-medium">
+              <div className="text-xs sm:text-sm text-accent-700 font-medium mt-1">
                 {t('daysUntilBirthday')}
               </div>
             </div>
