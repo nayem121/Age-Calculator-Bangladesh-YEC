@@ -27,7 +27,12 @@ export function calculateAge(birthDate: Date, targetDate?: Date): {
   totalDays: number;
   totalWeeks: number;
   totalMonths: number;
+  totalHours: number;
+  totalMinutes: number;
+  totalSeconds: number;
   daysUntilBirthday: number;
+  nextBirthday: Date;
+  leapYears: number;
   secondsLived: number;
   minutesLived: number;
   hoursLived: number;
@@ -65,11 +70,19 @@ export function calculateAge(birthDate: Date, targetDate?: Date): {
   const daysUntilBirthday = Math.ceil((nextBirthday.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 
   // Fun facts
-  const secondsLived = Math.floor((today.getTime() - birth.getTime()) / 1000);
-  const minutesLived = Math.floor(secondsLived / 60);
-  const hoursLived = Math.floor(minutesLived / 60);
-  const heartbeats = Math.floor(secondsLived * 1.2); // Average 72 bpm
-  const breaths = Math.floor(secondsLived / 4); // Average 15 breaths per minute
+  const totalSeconds = Math.floor((today.getTime() - birth.getTime()) / 1000);
+  const totalMinutes = Math.floor(totalSeconds / 60);
+  const totalHours = Math.floor(totalMinutes / 60);
+  const heartbeats = Math.floor(totalSeconds * 1.2); // Average 72 bpm
+  const breaths = Math.floor(totalSeconds / 4); // Average 15 breaths per minute
+
+  // Calculate leap years
+  let leapYears = 0;
+  for (let year = birth.getFullYear(); year <= today.getFullYear(); year++) {
+    if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+      leapYears++;
+    }
+  }
 
   return {
     years,
@@ -78,10 +91,15 @@ export function calculateAge(birthDate: Date, targetDate?: Date): {
     totalDays,
     totalWeeks,
     totalMonths,
+    totalHours,
+    totalMinutes,
+    totalSeconds,
     daysUntilBirthday,
-    secondsLived,
-    minutesLived,
-    hoursLived,
+    nextBirthday,
+    leapYears,
+    secondsLived: totalSeconds,
+    minutesLived: totalMinutes,
+    hoursLived: totalHours,
     heartbeats,
     breaths,
   };
