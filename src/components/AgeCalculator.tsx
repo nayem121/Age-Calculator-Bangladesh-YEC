@@ -15,7 +15,7 @@ interface AgeCalculatorProps {
 export default function AgeCalculator({ locale }: AgeCalculatorProps) {
   const t = useTranslations()
   const [birthDate, setBirthDate] = useState<Date | null>(null)
-  const [targetDate, setTargetDate] = useState<Date | null>(null)
+  const [targetDate, setTargetDate] = useState<Date | null>(new Date())
   const [ageResult, setAgeResult] = useState<any>(null)
   const [isCalculating, setIsCalculating] = useState(false)
 
@@ -133,23 +133,29 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
           </div>
 
           {/* Date Inputs */}
-          <div className="space-y-4">
-            <DatePicker
-              value={birthDate}
-              onChange={setBirthDate}
-              locale={locale}
-              label={t('birthDate')}
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex flex-col">
+              <DatePicker
+                value={birthDate}
+                onChange={setBirthDate}
+                locale={locale}
+                label={t('birthDate')}
+              />
+            </div>
             
-            <DatePicker
-              value={targetDate}
-              onChange={setTargetDate}
-              locale={locale}
-              label={locale === 'bn' ? 'বয়স গণনার তারিখ' : 'Age at the Date of'}
-              placeholder={locale === 'bn' ? 'ঐচ্ছিক - বর্তমান তারিখ ব্যবহার করুন' : 'Optional - Use current date'}
-              required={false}
-              maxDate={new Date().toISOString().split('T')[0]}
-            />
+            <div className="flex flex-col">
+              <DatePicker
+                value={targetDate}
+                onChange={setTargetDate}
+                locale={locale}
+                label={locale === 'bn' ? 'বয়স গণনার তারিখ' : 'Age at the Date of'}
+                placeholder={locale === 'bn' ? 'ঐচ্ছিক - বর্তমান তারিখ ব্যবহার করুন' : 'Optional - Use current date'}
+                required={false}
+                maxDate={new Date().toISOString().split('T')[0]}
+                showClearButton={true}
+              />
+            </div>
+          </div>
 
             {/* Calculate Button */}
             <button
