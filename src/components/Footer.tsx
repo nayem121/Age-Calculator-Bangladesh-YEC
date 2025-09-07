@@ -2,7 +2,6 @@
 
 import { useTranslations } from 'next-intl'
 import { ExternalLink } from 'lucide-react'
-import Image from 'next/image'
 
 interface FooterProps {
   locale: string
