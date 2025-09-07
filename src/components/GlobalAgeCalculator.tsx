@@ -60,10 +60,10 @@ export default function GlobalAgeCalculator() {
       <div className="text-center space-y-6 animate-fade-in">
         <div className="space-y-4">
           <h1 className="text-4xl md:text-5xl font-bold text-white">
-            Global Age Calculator
+            Age Calculator
           </h1>
           <p className="text-xl text-white max-w-2xl mx-auto">
-            Calculate your age across different calendar systems and discover your zodiac sign
+            Calculate age in years, months, weeks, days, hours, minutes, and seconds
           </p>
         </div>
         
@@ -73,25 +73,25 @@ export default function GlobalAgeCalculator() {
             Age Calculator
           </span>
           <span className="bg-white/20 px-3 py-1 rounded-full">
-            Date of Birth Calculator
-          </span>
-          <span className="bg-white/20 px-3 py-1 rounded-full">
-            Gregorian Calendar
-          </span>
-          <span className="bg-white/20 px-3 py-1 rounded-full">
-            Hebrew Calendar
-          </span>
-          <span className="bg-white/20 px-3 py-1 rounded-full">
-            Chinese Calendar
-          </span>
-          <span className="bg-white/20 px-3 py-1 rounded-full">
-            Hindu Calendar
-          </span>
-          <span className="bg-white/20 px-3 py-1 rounded-full">
-            Zodiac Signs
+            Date of Birth
           </span>
           <span className="bg-white/20 px-3 py-1 rounded-full">
             Birthday Calculator
+          </span>
+          <span className="bg-white/20 px-3 py-1 rounded-full">
+            Age in Years
+          </span>
+          <span className="bg-white/20 px-3 py-1 rounded-full">
+            Age in Days
+          </span>
+          <span className="bg-white/20 px-3 py-1 rounded-full">
+            Zodiac Sign
+          </span>
+          <span className="bg-white/20 px-3 py-1 rounded-full">
+            Calendar Converter
+          </span>
+          <span className="bg-white/20 px-3 py-1 rounded-full">
+            Free Calculator
           </span>
         </div>
       </div>
@@ -190,6 +190,40 @@ export default function GlobalAgeCalculator() {
         <GlobalAgeResult ageResult={ageResult} />
       )}
 
+      {/* Educational Content - Like Calculator.net */}
+      <div className="card-gradient rounded-3xl p-8 shadow-strong">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">How Age is Calculated</h2>
+        
+        <div className="space-y-6 text-gray-700">
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">Western Age System</h3>
+            <p className="text-sm leading-relaxed">
+              This calculator uses the most common age system where age increases on a person's birthday. 
+              For example, the age of a person who has lived for 3 years and 11 months is 3, and their age 
+              will increase to 4 on their next birthday one month later. Most western countries use this age system.
+            </p>
+          </div>
+          
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">Different Cultural Systems</h3>
+            <p className="text-sm leading-relaxed">
+              In some cultures, age is expressed by counting years with or without including the current year. 
+              In traditional Chinese age systems, people are born at age 1 and their age increases at the 
+              Traditional Chinese New Year rather than their birthday.
+            </p>
+          </div>
+          
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">Month and Day Calculations</h3>
+            <p className="text-sm leading-relaxed">
+              When calculating months and days, we count from the same day of the month. For example, 
+              Feb. 20 to Mar. 20 is one month. For dates like Feb. 28 to Mar. 31, we consider Feb. 28 
+              to Mar. 28 as one month, resulting in one month and 3 days.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Features Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <article className="card-gradient rounded-2xl p-6 text-center animate-fade-in">
@@ -224,7 +258,7 @@ export default function GlobalAgeCalculator() {
             Precise Calculation
           </h3>
           <p className="text-gray-600 text-sm">
-            Get exact age in years, months, days, hours, minutes, and seconds
+            Get exact age in years, months, weeks, days, hours, minutes, and seconds
           </p>
         </article>
 
@@ -233,10 +267,10 @@ export default function GlobalAgeCalculator() {
             <Heart className="h-8 w-8 text-accent-600" />
           </div>
           <h3 className="text-lg font-bold text-gray-900 mb-2">
-            Global Access
+            Free to Use
           </h3>
           <p className="text-gray-600 text-sm">
-            Works for people from all countries and cultural backgrounds worldwide
+            Completely free online age calculator with no registration required
           </p>
         </article>
       </div>

@@ -27,12 +27,12 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   
   if (isEnglish) {
     return {
-      title: 'Global Age Calculator - Calculate Age Across Multiple Calendar Systems',
-      description: 'Free online age calculator supporting Gregorian, Hebrew, Chinese, and Hindu calendars. Calculate your exact age in years, months, days, and discover your zodiac sign.',
-      keywords: 'age calculator, date of birth calculator, gregorian calendar, hebrew calendar, chinese calendar, hindu calendar, zodiac signs, birthday calculator, global age calculator, multiple calendars, age calculation, birth date calculator, calendar conversion, astrological signs, horoscope calculator',
+      title: 'Age Calculator - Calculate Age in Years, Months, Days, Hours, Minutes, Seconds',
+      description: 'Free online age calculator. Calculate your exact age in years, months, weeks, days, hours, minutes, and seconds. Find your zodiac sign and convert dates across different calendar systems.',
+      keywords: 'age calculator, date of birth calculator, birthday calculator, age in years, age in days, age in months, age in hours, age in minutes, age in seconds, zodiac sign, calendar converter, free calculator, online calculator, age calculation, birth date calculator, how old am i, calculate age, age finder, birthday finder',
       openGraph: {
-        title: 'Global Age Calculator - Multiple Calendar Systems',
-        description: 'Calculate your age across different calendar systems and discover your zodiac sign',
+        title: 'Age Calculator - Calculate Age in Years, Months, Days',
+        description: 'Free online age calculator. Calculate your exact age in years, months, weeks, days, hours, minutes, and seconds.',
         locale: 'en_US',
       },
     }
@@ -65,7 +65,7 @@ export default function HomePage({ params: { locale } }: { params: { locale: str
       <main className="container mx-auto px-4 py-8">
         <h1 className="sr-only">
           {isEnglish 
-            ? 'Global Age Calculator - Calculate Age Across Multiple Calendar Systems' 
+            ? 'Age Calculator - Calculate Age in Years, Months, Days, Hours, Minutes, Seconds' 
             : 'বয়স ক্যালকুলেটর বাংলাদেশ - জন্ম তারিখ দিয়ে বয়স বের করুন'
           }
         </h1>

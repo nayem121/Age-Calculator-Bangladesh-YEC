@@ -31,12 +31,12 @@ export default function Header({ locale }: HeaderProps) {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">
-                {locale === 'en' ? 'Global Age Calculator' : t('ageCalculator')}
+                {locale === 'en' ? 'Age Calculator' : t('ageCalculator')}
               </h1>
               <p className="text-sm text-white/95 hidden sm:block">
                 {locale === 'bn' 
                   ? 'বাংলাদেশের জন্য বিশেষায়িত বয়স ক্যালকুলেটর'
-                  : 'Calculate Age Across Multiple Calendar Systems'
+                  : 'Calculate age in years, months, days, hours, minutes, and seconds'
                 }
               </p>
             </div>

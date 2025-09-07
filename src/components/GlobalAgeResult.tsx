@@ -36,8 +36,8 @@ export default function GlobalAgeResult({ ageResult }: GlobalAgeResultProps) {
             </div>
           )}
           
-          {/* Age Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {/* Age Grid - Comprehensive like Calculator.net */}
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
             <div className="bg-white/50 rounded-xl p-4 text-center">
               <div className="text-2xl font-bold text-primary-600">{ageResult.years}</div>
               <div className="text-sm text-gray-600">Years</div>
@@ -47,12 +47,24 @@ export default function GlobalAgeResult({ ageResult }: GlobalAgeResultProps) {
               <div className="text-sm text-gray-600">Months</div>
             </div>
             <div className="bg-white/50 rounded-xl p-4 text-center">
+              <div className="text-2xl font-bold text-primary-600">{Math.floor(ageResult.totalDays / 7)}</div>
+              <div className="text-sm text-gray-600">Weeks</div>
+            </div>
+            <div className="bg-white/50 rounded-xl p-4 text-center">
               <div className="text-2xl font-bold text-primary-600">{ageResult.days}</div>
               <div className="text-sm text-gray-600">Days</div>
             </div>
             <div className="bg-white/50 rounded-xl p-4 text-center">
-              <div className="text-2xl font-bold text-primary-600">{formatNumber(ageResult.totalDays)}</div>
-              <div className="text-sm text-gray-600">Total Days</div>
+              <div className="text-2xl font-bold text-primary-600">{formatNumber(ageResult.totalHours)}</div>
+              <div className="text-sm text-gray-600">Hours</div>
+            </div>
+            <div className="bg-white/50 rounded-xl p-4 text-center">
+              <div className="text-2xl font-bold text-primary-600">{formatNumber(ageResult.totalMinutes)}</div>
+              <div className="text-sm text-gray-600">Minutes</div>
+            </div>
+            <div className="bg-white/50 rounded-xl p-4 text-center">
+              <div className="text-2xl font-bold text-primary-600">{formatNumber(ageResult.totalSeconds)}</div>
+              <div className="text-sm text-gray-600">Seconds</div>
             </div>
           </div>
         </div>
