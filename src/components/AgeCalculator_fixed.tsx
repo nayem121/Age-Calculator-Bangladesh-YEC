@@ -14,7 +14,7 @@ interface AgeCalculatorProps {
 
 export default function AgeCalculator({ locale }: AgeCalculatorProps) {
   const t = useTranslations()
-  const [birthDate, setBirthDate] = useState<Date | null>(new Date())
+  const [birthDate, setBirthDate] = useState<Date | null>(null)
   const [targetDate, setTargetDate] = useState<Date | null>(new Date())
   const [ageResult, setAgeResult] = useState<any>(null)
   const [isCalculating, setIsCalculating] = useState(false)
@@ -140,10 +140,6 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
                 onChange={setBirthDate}
                 locale={locale}
                 label={t('birthDate')}
-                placeholder={locale === 'bn' ? 'জন্ম তারিখ নির্বাচন করুন' : 'Select your birth date'}
-                required={true}
-                maxDate={new Date().toISOString().split('T')[0]}
-                showClearButton={true}
               />
             </div>
             
