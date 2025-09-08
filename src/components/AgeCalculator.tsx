@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, lazy, Suspense } from 'react'
+import { useState, lazy, Suspense, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { Calendar, Calculator, Heart, Leaf, Star, Clock, Calendar as CalendarIcon } from 'lucide-react'
 import { calculateAge, formatNumber, formatDate, convertToHijri, convertToBengali, getZodiacSign } from '@/lib/utils'
@@ -8,7 +8,7 @@ import { bangladeshData } from '@/data/country-data'
 import DatePicker from './DatePicker'
 
 // Lazy load heavy components to improve initial render
-const AgeResult = lazy(() => import('./AgeResult'))
+const AgeResult = lazy(() => import('./AgeResult').then(module => ({ default: module.default })))
 
 interface AgeCalculatorProps {
   locale: string
@@ -16,10 +16,22 @@ interface AgeCalculatorProps {
 
 export default function AgeCalculator({ locale }: AgeCalculatorProps) {
   const t = useTranslations()
-  const [birthDate, setBirthDate] = useState<Date | null>(new Date())
-  const [targetDate, setTargetDate] = useState<Date | null>(new Date())
+  const [birthDate, setBirthDate] = useState<Date | null>(null)
+  const [targetDate, setTargetDate] = useState<Date | null>(null)
   const [ageResult, setAgeResult] = useState<any>(null)
   const [isCalculating, setIsCalculating] = useState(false)
+  const [isClient, setIsClient] = useState(false)
+
+  // Fix hydration mismatch by initializing dates on client side only
+  useEffect(() => {
+    setIsClient(true)
+    if (!birthDate) {
+      setBirthDate(new Date())
+    }
+    if (!targetDate) {
+      setTargetDate(new Date())
+    }
+  }, [])
 
   const handleCalculate = async () => {
     if (!birthDate) {

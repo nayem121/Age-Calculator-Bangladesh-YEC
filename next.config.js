@@ -106,6 +106,9 @@ const nextConfig = {
   // Enable SWC minification
   swcMinify: true,
   
+  // Enable source maps in production for better debugging
+  productionBrowserSourceMaps: true,
+  
   // Internationalization - removed as we're using app router with next-intl
   
   // Redirects for SEO

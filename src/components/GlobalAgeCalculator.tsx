@@ -1,18 +1,30 @@
 'use client'
 
-import { useState, lazy, Suspense } from 'react'
+import { useState, lazy, Suspense, useEffect } from 'react'
 import { Calendar, Calculator, Globe, Clock, Star, Heart } from 'lucide-react'
-import { calculateAge, formatNumber, formatDate } from '@/lib/utils'
+import { calculateAge, formatNumber, formatDate, getZodiacSign } from '@/lib/utils'
 import DatePicker from './DatePicker'
 
 // Lazy load heavy components to improve initial render
-const GlobalAgeResult = lazy(() => import('./GlobalAgeResult'))
+const GlobalAgeResult = lazy(() => import('./GlobalAgeResult').then(module => ({ default: module.default })))
 
 export default function GlobalAgeCalculator() {
-  const [birthDate, setBirthDate] = useState<Date | null>(new Date())
-  const [targetDate, setTargetDate] = useState<Date | null>(new Date())
+  const [birthDate, setBirthDate] = useState<Date | null>(null)
+  const [targetDate, setTargetDate] = useState<Date | null>(null)
   const [ageResult, setAgeResult] = useState<any>(null)
   const [isCalculating, setIsCalculating] = useState(false)
+  const [isClient, setIsClient] = useState(false)
+
+  // Fix hydration mismatch by initializing dates on client side only
+  useEffect(() => {
+    setIsClient(true)
+    if (!birthDate) {
+      setBirthDate(new Date())
+    }
+    if (!targetDate) {
+      setTargetDate(new Date())
+    }
+  }, [])
 
   const handleCalculate = async () => {
     if (!birthDate) {
@@ -29,7 +41,7 @@ export default function GlobalAgeCalculator() {
       const ageData = calculateAge(birthDate, targetDate || undefined)
       
       // Get zodiac information
-      const zodiacData = getZodiacSign(birthDate)
+      const zodiacData = getZodiacSign(birthDate, 'en')
       
       // Calendar conversions
       const gregorianDate = formatDate(birthDate, 'en')
@@ -287,61 +299,6 @@ export default function GlobalAgeCalculator() {
 }
 
 // Helper functions for calendar conversions
-function getZodiacSign(birthDate: Date) {
-  const month = birthDate.getMonth() + 1
-  const day = birthDate.getDate()
-  
-  const zodiacSigns = [
-    { name: 'Capricorn', start: [12, 22], end: [1, 19] },
-    { name: 'Aquarius', start: [1, 20], end: [2, 18] },
-    { name: 'Pisces', start: [2, 19], end: [3, 20] },
-    { name: 'Aries', start: [3, 21], end: [4, 19] },
-    { name: 'Taurus', start: [4, 20], end: [5, 20] },
-    { name: 'Gemini', start: [5, 21], end: [6, 20] },
-    { name: 'Cancer', start: [6, 21], end: [7, 22] },
-    { name: 'Leo', start: [7, 23], end: [8, 22] },
-    { name: 'Virgo', start: [8, 23], end: [9, 22] },
-    { name: 'Libra', start: [9, 23], end: [10, 22] },
-    { name: 'Scorpio', start: [10, 23], end: [11, 21] },
-    { name: 'Sagittarius', start: [11, 22], end: [12, 21] }
-  ]
-  
-  for (const sign of zodiacSigns) {
-    const [startMonth, startDay] = sign.start
-    const [endMonth, endDay] = sign.end
-    
-    if (
-      (month === startMonth && day >= startDay) ||
-      (month === endMonth && day <= endDay) ||
-      (startMonth > endMonth && (month > startMonth || month < endMonth))
-    ) {
-      return {
-        name: sign.name,
-        description: getZodiacDescription(sign.name)
-      }
-    }
-  }
-  
-  return { name: 'Unknown', description: 'Unable to determine zodiac sign' }
-}
-
-function getZodiacDescription(sign: string) {
-  const descriptions: { [key: string]: string } = {
-    'Aries': 'Bold, ambitious, and confident leader',
-    'Taurus': 'Reliable, patient, and practical',
-    'Gemini': 'Versatile, expressive, and curious',
-    'Cancer': 'Loyal, emotional, and intuitive',
-    'Leo': 'Dramatic, creative, and self-confident',
-    'Virgo': 'Analytical, kind, and hardworking',
-    'Libra': 'Diplomatic, fair, and social',
-    'Scorpio': 'Passionate, resourceful, and brave',
-    'Sagittarius': 'Adventurous, independent, and philosophical',
-    'Capricorn': 'Responsible, disciplined, and self-controlled',
-    'Aquarius': 'Progressive, independent, and humanitarian',
-    'Pisces': 'Compassionate, artistic, and intuitive'
-  }
-  return descriptions[sign] || 'Unique and special'
-}
 
 function convertToHebrew(date: Date) {
   // Simplified Hebrew calendar conversion
