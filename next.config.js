@@ -5,6 +5,7 @@ const nextConfig = {
   // Performance optimizations
   experimental: {
     optimizePackageImports: ['lucide-react', '@vercel/analytics', '@vercel/speed-insights'],
+    webVitalsAttribution: ['CLS', 'LCP'],
   },
   
   // Image optimization
@@ -67,17 +68,33 @@ const nextConfig = {
     if (!dev && !isServer) {
       config.optimization.splitChunks = {
         chunks: 'all',
+        minSize: 20000,
+        maxSize: 244000,
         cacheGroups: {
           vendor: {
             test: /[\\/]node_modules[\\/]/,
             name: 'vendors',
             chunks: 'all',
+            priority: 10,
+          },
+          lucide: {
+            test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
+            name: 'lucide',
+            chunks: 'all',
+            priority: 20,
+          },
+          analytics: {
+            test: /[\\/]node_modules[\\/]@vercel[\\/]/,
+            name: 'analytics',
+            chunks: 'async',
+            priority: 5,
           },
           common: {
             name: 'common',
             minChunks: 2,
             chunks: 'all',
             enforce: true,
+            priority: 1,
           },
         },
       }

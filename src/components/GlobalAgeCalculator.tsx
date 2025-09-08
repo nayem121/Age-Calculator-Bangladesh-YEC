@@ -1,10 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import { Calendar, Calculator, Globe, Clock, Star, Heart } from 'lucide-react'
 import { calculateAge, formatNumber, formatDate } from '@/lib/utils'
-import GlobalAgeResult from './GlobalAgeResult'
 import DatePicker from './DatePicker'
+
+// Lazy load heavy components to improve initial render
+const GlobalAgeResult = lazy(() => import('./GlobalAgeResult'))
 
 export default function GlobalAgeCalculator() {
   const [birthDate, setBirthDate] = useState<Date | null>(new Date())
@@ -20,8 +22,8 @@ export default function GlobalAgeCalculator() {
 
     setIsCalculating(true)
     
-    // Reduced delay for better performance while maintaining UX
-    await new Promise(resolve => setTimeout(resolve, 200))
+    // Minimal delay for better UX without blocking
+    await new Promise(resolve => setTimeout(resolve, 100))
 
     try {
       const ageData = calculateAge(birthDate, targetDate || undefined)
@@ -187,7 +189,13 @@ export default function GlobalAgeCalculator() {
 
       {/* Results */}
       {ageResult && (
-        <GlobalAgeResult ageResult={ageResult} />
+        <Suspense fallback={
+          <div className="flex justify-center items-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
+          </div>
+        }>
+          <GlobalAgeResult ageResult={ageResult} />
+        </Suspense>
       )}
 
       {/* Educational Content - Like Calculator.net */}

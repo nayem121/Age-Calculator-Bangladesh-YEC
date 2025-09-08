@@ -38,7 +38,7 @@ export default function Footer({ locale }: FooterProps) {
               <p className="text-sm text-white/95">
                 {locale === 'bn' 
                   ? 'বাংলাদেশের যুবদের জন্য প্রযুক্তি সমাধান'
-                  : 'Technology Solutions for Bangladesh Youth'
+                  : 'Technology Solutions for Youth'
                 }
               </p>
             </div>
@@ -67,7 +67,7 @@ export default function Footer({ locale }: FooterProps) {
               href="https://agecalculator.yec.org.bd"
               className="text-white hover:text-white/90 transition-colors"
             >
-              Age Calculator Bangladesh
+              Age Calculator
             </a>
             
             {/* Android App Promotion */}
@@ -94,7 +94,7 @@ export default function Footer({ locale }: FooterProps) {
           <p className="text-white/85 text-xs mt-2">
             {locale === 'bn' 
               ? 'এই ওয়েবসাইটটি বাংলাদেশের নাগরিকদের জন্য বিনামূল্যে বয়স গণনার সুবিধা প্রদান করে'
-              : 'This website provides free age calculation services for Bangladesh citizens'
+              : 'This website provides free age calculation services'
             }
           </p>
         </div>

@@ -1,12 +1,14 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import { useTranslations } from 'next-intl'
 import { Calendar, Calculator, Heart, Leaf, Star, Clock, Calendar as CalendarIcon } from 'lucide-react'
 import { calculateAge, formatNumber, formatDate, convertToHijri, convertToBengali, getZodiacSign } from '@/lib/utils'
 import { bangladeshData } from '@/data/country-data'
-import AgeResult from './AgeResult'
 import DatePicker from './DatePicker'
+
+// Lazy load heavy components to improve initial render
+const AgeResult = lazy(() => import('./AgeResult'))
 
 interface AgeCalculatorProps {
   locale: string
@@ -31,7 +33,7 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
     setIsCalculating(true)
     
     // Reduced delay for better performance while maintaining UX
-    await new Promise(resolve => setTimeout(resolve, 200))
+    await new Promise(resolve => setTimeout(resolve, 100))
 
     try {
       const ageData = calculateAge(birthDate, targetDate || undefined)
@@ -198,7 +200,13 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
 
       {/* Results */}
       {ageResult && (
-        <AgeResult ageResult={ageResult} locale={locale} t={t} />
+        <Suspense fallback={
+          <div className="flex justify-center items-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
+          </div>
+        }>
+          <AgeResult ageResult={ageResult} locale={locale} t={t} />
+        </Suspense>
       )}
 
       {/* Features Section */}
