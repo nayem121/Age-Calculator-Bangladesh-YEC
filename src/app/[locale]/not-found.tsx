@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
-export default function NotFound({ params: { locale } }: { params: { locale: string } }) {
+export default function NotFound({ params }: { params: { locale?: string } }) {
+  const locale = params?.locale || 'en';
   return (
     <div className="min-h-screen gradient-bg flex items-center justify-center">
       <div className="text-center">
