@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import dynamic from 'next/dynamic'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import SEOHead from '@/components/SEO/SEOHead'
 
 // Lazy load components to improve LCP
 const AgeCalculator = dynamic(() => import('@/components/AgeCalculator'), {
@@ -60,6 +61,7 @@ export default function HomePage({ params: { locale } }: { params: { locale: str
   
   return (
     <div className="min-h-screen gradient-bg">
+      <SEOHead locale={locale} pageType="home" />
       <Header locale={locale} />
       <main className="container mx-auto px-4 py-8">
         <h1 className="sr-only">

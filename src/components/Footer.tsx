@@ -17,10 +17,12 @@ export default function Footer({ locale }: FooterProps) {
           {/* YEC Logo and Info */}
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-3">
-              {/* Bangladesh Flag */}
-              <div className="w-12 h-8 bg-green-600 rounded flex items-center justify-center">
-                <div className="w-4 h-4 bg-red-500 rounded-full"></div>
-              </div>
+              {/* Bangladesh Flag - Only show on Bengali pages */}
+              {locale === 'bn' && (
+                <div className="w-12 h-8 bg-green-600 rounded flex items-center justify-center">
+                  <div className="w-4 h-4 bg-red-500 rounded-full"></div>
+                </div>
+              )}
               
               {/* YEC Logo Placeholder */}
               <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">

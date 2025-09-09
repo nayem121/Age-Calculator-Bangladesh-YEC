@@ -1,0 +1,5 @@
+[33mbb3349c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Resolve merge conflicts and restore proper AgeResult component
+[33m0a77bd6[m Fix production issues: enable source maps and resolve React hydration errors
+[33m4124edf[m[33m ([m[1;31morigin/main[m[33m)[m Update GlobalAgeCalculator.tsx
+[33mcb08052[m Update AgeResult.tsx
+[33m0de84fb[m Update layout.tsx
