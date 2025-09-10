@@ -4,14 +4,14 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SEOHead from '@/components/SEO/SEOHead'
 
-// Lazy load components to improve LCP
+// Lazy load components to improve LCP - only load when needed
 const AgeCalculator = dynamic(() => import('@/components/AgeCalculator'), {
   loading: () => (
     <div className="flex justify-center items-center py-12">
       <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
     </div>
   ),
-  ssr: true
+  ssr: false // Disable SSR for better performance
 })
 
 const GlobalAgeCalculator = dynamic(() => import('@/components/GlobalAgeCalculator'), {
@@ -20,7 +20,7 @@ const GlobalAgeCalculator = dynamic(() => import('@/components/GlobalAgeCalculat
       <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
     </div>
   ),
-  ssr: true
+  ssr: false // Disable SSR for better performance
 })
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {

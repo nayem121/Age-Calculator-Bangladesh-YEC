@@ -4,8 +4,10 @@ const withNextIntl = require('next-intl/plugin')('./i18n.ts');
 const nextConfig = {
   // Performance optimizations
   experimental: {
-    optimizePackageImports: ['lucide-react', '@vercel/analytics', '@vercel/speed-insights'],
-    webVitalsAttribution: ['CLS', 'LCP'],
+    optimizePackageImports: ['lucide-react', '@vercel/analytics', '@vercel/speed-insights', 'framer-motion', 'date-fns'],
+    webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB'],
+    optimizeCss: true,
+    serverComponentsExternalPackages: ['@vercel/analytics', '@vercel/speed-insights'],
   },
   
   // Image optimization
@@ -69,25 +71,42 @@ const nextConfig = {
       config.optimization.splitChunks = {
         chunks: 'all',
         minSize: 20000,
-        maxSize: 244000,
+        maxSize: 200000, // Reduced from 244000
         cacheGroups: {
           vendor: {
             test: /[\\/]node_modules[\\/]/,
             name: 'vendors',
             chunks: 'all',
             priority: 10,
+            maxSize: 100000,
+          },
+          react: {
+            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name: 'react',
+            chunks: 'all',
+            priority: 30,
+            maxSize: 50000,
           },
           lucide: {
             test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
             name: 'lucide',
             chunks: 'all',
+            priority: 25,
+            maxSize: 30000,
+          },
+          framer: {
+            test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+            name: 'framer',
+            chunks: 'async',
             priority: 20,
+            maxSize: 40000,
           },
           analytics: {
             test: /[\\/]node_modules[\\/]@vercel[\\/]/,
             name: 'analytics',
             chunks: 'async',
             priority: 5,
+            maxSize: 20000,
           },
           common: {
             name: 'common',
@@ -95,9 +114,14 @@ const nextConfig = {
             chunks: 'all',
             enforce: true,
             priority: 1,
+            maxSize: 50000,
           },
         },
       }
+      
+      // Tree shaking optimization
+      config.optimization.usedExports = true
+      config.optimization.sideEffects = false
     }
     
     return config
