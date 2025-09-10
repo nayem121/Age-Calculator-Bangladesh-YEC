@@ -27,7 +27,7 @@ export const deferNonCriticalScripts = () => {
   const scripts = document.querySelectorAll('script[data-defer]')
   scripts.forEach(script => {
     if (script.getAttribute('data-defer') === 'true') {
-      script.defer = true
+      (script as HTMLScriptElement).defer = true
     }
   })
 }
