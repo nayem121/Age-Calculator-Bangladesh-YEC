@@ -6,7 +6,6 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion', 'date-fns'],
     webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB'],
-    optimizeCss: true,
     serverComponentsExternalPackages: ['@vercel/analytics', '@vercel/speed-insights'],
   },
   
