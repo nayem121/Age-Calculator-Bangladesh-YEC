@@ -4,7 +4,7 @@ const withNextIntl = require('next-intl/plugin')('./i18n.ts');
 const nextConfig = {
   // Performance optimizations
   experimental: {
-    optimizePackageImports: ['lucide-react', '@vercel/analytics', '@vercel/speed-insights', 'framer-motion', 'date-fns'],
+    optimizePackageImports: ['lucide-react', 'framer-motion', 'date-fns'],
     webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB'],
     optimizeCss: true,
     serverComponentsExternalPackages: ['@vercel/analytics', '@vercel/speed-insights'],
