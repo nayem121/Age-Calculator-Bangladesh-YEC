@@ -6,7 +6,6 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion', 'date-fns'],
     webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB'],
-    serverComponentsExternalPackages: ['@vercel/analytics', '@vercel/speed-insights'],
   },
   
   // Image optimization
@@ -100,13 +99,7 @@ const nextConfig = {
             priority: 20,
             maxSize: 40000,
           },
-          analytics: {
-            test: /[\\/]node_modules[\\/]@vercel[\\/]/,
-            name: 'analytics',
-            chunks: 'async',
-            priority: 5,
-            maxSize: 20000,
-          },
+          
           common: {
             name: 'common',
             minChunks: 2,

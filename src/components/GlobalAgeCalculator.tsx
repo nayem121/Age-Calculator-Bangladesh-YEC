@@ -60,7 +60,7 @@ export default function GlobalAgeCalculator() {
         isTargetDateUsed: !!targetDate
       })
     } catch (error) {
-      console.error('Calculation error:', error)
+      if (process.env.NODE_ENV !== 'production') console.error('Calculation error:', error)
       alert('An error occurred while calculating age')
     } finally {
       setIsCalculating(false)

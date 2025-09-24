@@ -80,7 +80,7 @@ export default function AgeCalculator({ locale }: AgeCalculatorProps) {
         isTargetDateUsed: !!targetDate
       })
     } catch (error) {
-      console.error('Calculation error:', error)
+      if (process.env.NODE_ENV !== 'production') console.error('Calculation error:', error)
       alert(t('error'))
     } finally {
       setIsCalculating(false)

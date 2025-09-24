@@ -5,17 +5,6 @@ import { getMessages } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import dynamic from 'next/dynamic'
 
-// Lazy load analytics to improve LCP - defer until after page load
-const Analytics = dynamic(() => import('@vercel/analytics/react').then(mod => ({ default: mod.Analytics })), {
-  ssr: false,
-  loading: () => null
-})
-
-const SpeedInsights = dynamic(() => import('@vercel/speed-insights/next').then(mod => ({ default: mod.SpeedInsights })), {
-  ssr: false,
-  loading: () => null
-})
-
 const inter = Inter({ 
   subsets: ['latin'],
   variable: '--font-inter',
@@ -142,8 +131,6 @@ export default async function RootLayout({
         <meta name="msapplication-TileColor" content="#0F4C75" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />
-        <link rel="dns-prefetch" href="https://v.vercel-insights.com" />
         <link rel="preconnect" href="https://agecalculator.yec.org.bd" />
         <link rel="dns-prefetch" href="https://yec.org.bd" />
         <link rel="preload" href="/favicon.webp" as="image" type="image/webp" />
@@ -288,8 +275,6 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
-        <Analytics />
-        <SpeedInsights />
         <script
           dangerouslySetInnerHTML={{
             __html: `
