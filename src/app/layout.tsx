@@ -337,6 +337,8 @@ export default async function RootLayout({
             `
           }}
         />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2950914821697689"
+     crossorigin="anonymous"></script>
       </body>
     </html>
   )
