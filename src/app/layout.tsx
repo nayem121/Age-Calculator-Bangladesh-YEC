@@ -2,8 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Noto_Sans_Bengali } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
-import { notFound } from 'next/navigation'
-import dynamic from 'next/dynamic'
+import Script from 'next/script'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -18,7 +17,7 @@ const notoSansBengali = Noto_Sans_Bengali({
   subsets: ['bengali'],
   variable: '--font-bengali',
   display: 'swap',
-  preload: false, // Only preload when needed
+  preload: false,
   fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
   adjustFontFallback: true
 })
@@ -69,22 +68,22 @@ export const metadata: Metadata = {
       'bn-BD': '/bn',
     },
   },
-      openGraph: {
-      type: 'website',
-      locale: 'en_US',
-      url: 'https://agecalculator.yec.org.bd',
-      siteName: 'Age Calculator',
-      title: 'Age Calculator - Calculate Age in Years, Months, Days, Hours, Minutes, Seconds',
-      description: 'Free online age calculator. Calculate your exact age in years, months, weeks, days, hours, minutes, and seconds. Find your zodiac sign and convert dates across different calendar systems.',
-      images: [
-        {
-          url: '/og-image.jpg',
-          width: 1200,
-          height: 630,
-          alt: 'Age Calculator - Calculate Age in Years, Months, Days',
-        },
-      ],
-    },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://agecalculator.yec.org.bd',
+    siteName: 'Age Calculator',
+    title: 'Age Calculator - Calculate Age in Years, Months, Days, Hours, Minutes, Seconds',
+    description: 'Free online age calculator. Calculate your exact age in years, months, weeks, days, hours, minutes, and seconds. Find your zodiac sign and convert dates across different calendar systems.',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Age Calculator - Calculate Age in Years, Months, Days',
+      },
+    ],
+  },
   twitter: {
     card: 'summary_large_image',
     title: 'Age Calculator - Calculate Age in Years, Months, Days',
@@ -108,15 +107,11 @@ export const metadata: Metadata = {
   },
 }
 
-const locales = ['en', 'bn']
-
 export default async function RootLayout({
   children
 }: {
   children: React.ReactNode
 }) {
-  // Providing all messages to the client
-  // side is the easiest way to get started
   const messages = await getMessages()
 
   return (
@@ -272,9 +267,18 @@ export default async function RootLayout({
         />
       </head>
       <body className={`${inter.className} antialiased`}>
+        {/* Google AdSense Script */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2950914821697689"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
+
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -283,14 +287,10 @@ export default async function RootLayout({
                 // Defer analytics loading until after page load
                 if (document.readyState === 'loading') {
                   document.addEventListener('DOMContentLoaded', function() {
-                    setTimeout(() => {
-                      // Analytics will load automatically via dynamic import
-                    }, 1000);
+                    setTimeout(() => {}, 1000);
                   });
                 } else {
-                  setTimeout(() => {
-                    // Analytics will load automatically via dynamic import
-                  }, 1000);
+                  setTimeout(() => {}, 1000);
                 }
                 
                 // Optimize font loading
@@ -320,8 +320,8 @@ export default async function RootLayout({
                 \`;
                 document.head.appendChild(style);
                 
-                // Load CSS files dynamically
-                const loadCSS = (href: string) => {
+                // Load CSS files dynamically (plain JS, no TS annotations)
+                const loadCSS = (href) => {
                   const link = document.createElement('link');
                   link.rel = 'stylesheet';
                   link.href = href;
@@ -337,8 +337,6 @@ export default async function RootLayout({
             `
           }}
         />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2950914821697689"
-     crossorigin="anonymous"></script>
       </body>
     </html>
   )
