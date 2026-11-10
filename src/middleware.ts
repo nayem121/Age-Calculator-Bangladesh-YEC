@@ -1,17 +1,17 @@
 import createMiddleware from 'next-intl/middleware'
 
 export default createMiddleware({
-  // A list of all locales that are supported
-  locales: ['en', 'bn'],
+    // A list of all locales that are supported
+    locales: ['en', 'bn'],
 
-  // Used when no locale matches
-  defaultLocale: 'en',
+    // Used when no locale matches
+    defaultLocale: 'en',
 
-  // Always show the locale in the URL
-  localePrefix: 'always'
+    // Always show the locale in the URL
+    localePrefix: 'always'
 })
 
 export const config = {
-  // Match only internationalized pathnames
-  matcher: ['/', '/(bn|en)/:path*']
+    // Match only internationalized pathnames
+    matcher: ['/', '/(bn|en)/:path*']
 }

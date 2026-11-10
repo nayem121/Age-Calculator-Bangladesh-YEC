@@ -2,7 +2,6 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Metadata } from 'next'
 import { Shield, Eye, Lock, Mail, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
-import SEOHead from '@/components/SEO/SEOHead'
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'privacyPolicy' })
@@ -25,14 +24,6 @@ export default function PrivacyPolicyPage({ params: { locale } }: { params: { lo
   
   return (
     <div className="min-h-screen gradient-bg">
-      <SEOHead 
-        locale={locale} 
-        pageType="privacy" 
-        breadcrumbItems={[
-          { name: isBengali ? 'হোম' : 'Home', href: `/${locale}` },
-          { name: isBengali ? 'গোপনীয়তা নীতি' : 'Privacy Policy', href: `/${locale}/privacy-policy`, current: true }
-        ]}
-      />
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
